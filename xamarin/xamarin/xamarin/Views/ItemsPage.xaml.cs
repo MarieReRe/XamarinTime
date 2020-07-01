@@ -17,34 +17,36 @@ namespace xamarin.Views
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class ItemsPage : ContentPage
-    {
-        ItemsViewModel viewModel;
-
+    { 
         public ItemsPage()
         {
             InitializeComponent();
-
-            BindingContext = viewModel = new ItemsViewModel();
         }
 
-        async void OnItemSelected(object sender, EventArgs args)
+
+        private async void ButtonOn_Clicked(object sender, EventArgs e)
         {
-            var layout = (BindableObject)sender;
-            var item = (Item)layout.BindingContext;
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            try
+            {
+                await Xamarin.Essentials.Flashlight.TurnOnAsync();
+            }
+            catch (Exception)
+            {
+
+                
+            }
         }
-
-        async void AddItem_Clicked(object sender, EventArgs e)
+        private async void ButtonOff_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
-        }
+            try
+            {
+                await Xamarin.Essentials.Flashlight.TurnOffAsync();
+            }
+            catch (Exception)
+            {
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            if (viewModel.Items.Count == 0)
-                viewModel.IsBusy = true;
+                
+            }
         }
     }
 }
