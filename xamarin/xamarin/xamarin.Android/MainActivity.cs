@@ -1,4 +1,10 @@
-﻿namespace xamarin.Droid
+﻿using Android.App;
+using Android.Content.PM;
+using Android.OS;
+using Android.Runtime;
+using System.Drawing;
+
+namespace xamarin.Droid
 {
     [Activity(Label = "xamarin", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
